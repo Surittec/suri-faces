@@ -11,7 +11,10 @@
 	<f:attribute name="br.com.surittec.surifaces.converter.DateConverter.PATTERN" value="#{sf:getDefaultValue(pattern, 'dd/MM/yyyy')}"/>
 	<f:attribute name="mask" value="mask:'#{sf:getDefaultValue(mask, '39/19/9999')}', autoTab : #{sf:getDefaultValue(autoTab,false)}"/>
 	<f:converter converterId="br.com.surittec.surifaces.converter.DateConverter"/>
-	<f:validator validatorId="br.com.surittec.surifaces.validator.DateValidator"/>
+	
+	<c:if test="#{empty beanValidation or not beanValidation}">
+		<f:validator validatorId="br.com.surittec.surifaces.validator.DateValidator"/>
+	</c:if>
 	
 	<c:if test="#{not empty beforeThen}">
 		<f:attribute name="beforeThen" value="#{beforeThen}"/>

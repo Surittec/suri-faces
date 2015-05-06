@@ -13,6 +13,10 @@
 		</after>
 	</ordering>
 	
+	<application>
+		<el-resolver>br.com.surittec.surifaces.exception.resolver.ExceptionInfoELResolver</el-resolver>
+	</application>
+	
 	<factory>
 		<exception-handler-factory>br.com.surittec.surifaces.exception.handler.ExceptionHandlerFactory</exception-handler-factory>
 	</factory>

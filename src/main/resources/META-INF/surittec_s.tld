@@ -25,6 +25,15 @@
             	For genric components autotab can be specified within mask attribute.
             </description>
         </attribute>
+        <attribute>
+            <name>beanValidation</name>
+            <required>false</required>
+            <type>boolean</type>
+            <description>
+            	True if you are going to use bean validation, so dont include jsf validator.
+            	Default: false 
+            </description>
+        </attribute>
 	</tag>
 	<tag>
 		<name>cpf</name>
@@ -40,6 +49,15 @@
             <description>
             	Automatically tab when field is completely filled. Default is false. Use for all components, except for generic ones. 
             	For genric components autotab can be specified within mask attribute.
+            </description>
+        </attribute>
+        <attribute>
+            <name>beanValidation</name>
+            <required>false</required>
+            <type>boolean</type>
+            <description>
+            	True if you are going to use bean validation, so dont include jsf validator.
+            	Default: false 
             </description>
         </attribute>
 	</tag>
@@ -109,6 +127,15 @@
             	Mensagem caso a validacao afterThen falhe.
             </description>
         </attribute>
+        <attribute>
+            <name>beanValidation</name>
+            <required>false</required>
+            <type>boolean</type>
+            <description>
+            	True if you are going to use bean validation, so dont include jsf validator.
+            	Default: false 
+            </description>
+        </attribute>
 	</tag>
 	<tag>
 		<name>email</name>
@@ -117,6 +144,15 @@
 		<description>
 			Insere validador.
 		</description>
+		<attribute>
+            <name>beanValidation</name>
+            <required>false</required>
+            <type>boolean</type>
+            <description>
+            	True if you are going to use bean validation, so dont include jsf validator.
+            	Default: false 
+            </description>
+        </attribute>
 	</tag>
 	<tag>
 		<name>enum</name>
@@ -220,6 +256,15 @@
             <description>
             	Automatically tab when field is completely filled. Default is false. Use for all components, except for generic ones. 
             	For genric components autotab can be specified within mask attribute.
+            </description>
+        </attribute>
+        <attribute>
+            <name>beanValidation</name>
+            <required>false</required>
+            <type>boolean</type>
+            <description>
+            	True if you are going to use bean validation, so dont include jsf validator.
+            	Default: false 
             </description>
         </attribute>
 	</tag>

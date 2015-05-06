@@ -20,9 +20,10 @@
  */
 package br.com.surittec.surifaces.exception.handler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 
 import javax.faces.FacesException;
 import javax.faces.application.ViewExpiredException;
@@ -34,6 +35,11 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.OptimisticLockException;
 
 import org.ocpsoft.rewrite.exception.RewriteException;
+import org.ocpsoft.rewrite.faces.navigate.Navigate;
+import org.primefaces.application.exceptionhandler.ExceptionInfo;
+import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import br.com.surittec.surifaces.util.FacesUtils;
 import br.com.surittec.util.exception.ExceptionUtil;
@@ -50,7 +56,9 @@ public class ExceptionHandler extends ExceptionHandlerWrapper {
 
 	private final javax.faces.context.ExceptionHandler wrapped;
 
-	private static final Logger logger = Logger.getLogger(ExceptionHandler.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(ExceptionHandler.class);
+
+	private static final String DATE_FORMAT_PATTERN = "dd/MM/yyyy HH:mm:ss";
 
 	private boolean catched;
 
@@ -72,7 +80,7 @@ public class ExceptionHandler extends ExceptionHandlerWrapper {
 
 			if (handleException(it, t, FacesFileNotFoundException.class, "com.sun.faces.context.FacesFileNotFoundException.message"))
 				continue;
-			if (handleException(it, t, RewriteException.class, "com.ocpsoft.pretty.PrettyException.message"))
+			if (handleException(it, t, RewriteException.class, "org.ocpsoft.rewrite.exception.RewriteException.message"))
 				continue;
 			if (handleException(it, t, EntityNotFoundException.class, "javax.persistence.EntityNotFoundException.message"))
 				continue;
@@ -93,21 +101,47 @@ public class ExceptionHandler extends ExceptionHandlerWrapper {
 		if (type.isAssignableFrom(t.getClass())) {
 			try {
 				if (!catched) {
-					FacesContext facesContext = FacesUtils.getContext();
+
+					FacesContext context = FacesUtils.getContext();
 
 					FacesUtils.addMsgErro(message);
-
-					facesContext.getApplication().getNavigationHandler().handleNavigation(facesContext, null, "pretty:error");
-					facesContext.renderResponse();
+					FacesUtils.getRequestMap().put(ExceptionInfo.ATTRIBUTE_NAME, createExceptionInfo(t));
+					context.getApplication().getNavigationHandler().handleNavigation(context, null, null);
 
 					return true;
 				}
 			} finally {
 				catched = true;
-				logger.log(Level.SEVERE, t.getLocalizedMessage(), t);
+				logger.error(t.getLocalizedMessage(), t);
 				it.remove();
 			}
 		}
 		return false;
+	}
+
+	protected String getOutcome(Throwable rootCause) {
+		Map<String, String> errorPages = RequestContext.getCurrentInstance().getApplicationContext().getConfig().getErrorPages();
+
+		// get error page by exception type
+		String errorPage = errorPages.get(rootCause.getClass().getName());
+
+		// get default error page
+		if (errorPage == null) {
+			errorPage = errorPages.get(null);
+		}
+
+		return Navigate.to(errorPage).build();
+	}
+
+	protected ExceptionInfo createExceptionInfo(Throwable rootCause) {
+		ExceptionInfo info = new ExceptionInfo();
+		info.setException(rootCause);
+		info.setMessage(rootCause.getMessage());
+		info.setStackTrace(rootCause.getStackTrace());
+		info.setTimestamp(new Date());
+		info.setType(rootCause.getClass().getName());
+		info.setFormattedStackTrace(ExceptionUtil.getStackTrace(rootCause).replaceAll("(\r\n|\n)", "<br/>"));
+		info.setFormattedTimestamp(new SimpleDateFormat(DATE_FORMAT_PATTERN).format(info.getTimestamp()));
+		return info;
 	}
 }

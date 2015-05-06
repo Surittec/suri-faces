@@ -10,7 +10,10 @@
 	
 	<f:attribute name="mask" value="mask:'99999-999', autoTab : #{not empty autoTab ? autoTab : false}"/>
 	<f:converter converterId="br.com.surittec.surifaces.converter.CepConverter"/>
-	<f:validator validatorId="br.com.surittec.surifaces.validator.CepValidator"/>
+	
+	<c:if test="#{empty beanValidation or not beanValidation}">
+		<f:validator validatorId="br.com.surittec.surifaces.validator.CepValidator"/>
+	</c:if>
 	
 </ui:composition>
 </html>
