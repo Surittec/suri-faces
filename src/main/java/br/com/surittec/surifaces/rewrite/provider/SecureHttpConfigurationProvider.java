@@ -39,7 +39,7 @@ public abstract class SecureHttpConfigurationProvider extends HttpConfigurationP
 
 				.addRule()
 				.when(Direction.isInbound()
-						.andNot(DispatchType.isForward())
+						.and(DispatchType.isRequest())
 						.andNot(Path.matches("{*}javax.faces.resource{*}")))
 				.perform(SendStatus.error(404));
 	}
