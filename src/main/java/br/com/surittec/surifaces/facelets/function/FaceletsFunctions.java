@@ -22,6 +22,8 @@ package br.com.surittec.surifaces.facelets.function;
 
 import java.text.DecimalFormatSymbols;
 
+import javax.faces.application.FacesMessage;
+
 import br.com.surittec.surifaces.facelets.util.ComponentSupport;
 import br.com.surittec.surifaces.facelets.util.input.InputNumberTag;
 import br.com.surittec.surifaces.util.FacesUtils;
@@ -71,4 +73,23 @@ public class FaceletsFunctions {
 	public static boolean hasGlobalMessages() {
 		return !FacesUtils.getContext().getMessageList(null).isEmpty();
 	}
+	
+	public static boolean hasGlobalErrorMessages() {
+		for (FacesMessage message : FacesUtils.getContext().getMessageList(null)) {
+			if (FacesMessage.SEVERITY_ERROR.equals(message.getSeverity())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean hasGlobalWarnMessages() {
+		for (FacesMessage message : FacesUtils.getContext().getMessageList(null)) {
+			if (FacesMessage.SEVERITY_WARN.equals(message.getSeverity())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

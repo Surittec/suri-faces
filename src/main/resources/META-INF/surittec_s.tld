@@ -111,6 +111,23 @@
             </description>
         </attribute>
         <attribute>
+            <name>beforeEqualsThen</name>
+            <required>false</required>
+            <type>String</type>
+            <description>
+            	Valida se o componente e anterior ou igual ao componente informado.
+            	Pode ser informado "today", "tomorrow" ou "yesterday" para validar a data. 
+            </description>
+        </attribute>
+        <attribute>
+            <name>beforeThenMessage</name>
+            <required>false</required>
+            <type>String</type>
+            <description>
+            	Mensagem caso a validacao beforeEqualsThen falhe.
+            </description>
+        </attribute>
+        <attribute>
             <name>afterThen</name>
             <required>false</required>
             <type>String</type>
@@ -125,6 +142,23 @@
             <type>String</type>
             <description>
             	Mensagem caso a validacao afterThen falhe.
+            </description>
+        </attribute>
+        <attribute>
+            <name>afterEqualsThen</name>
+            <required>false</required>
+            <type>String</type>
+            <description>
+            	Valida se o componente e posterior ou igual ao componente informado.
+            	Pode ser informado "today", "tomorrow" ou "yesterday" para validar a data. 
+            </description>
+        </attribute>
+        <attribute>
+            <name>afterEqualsThenMessage</name>
+            <required>false</required>
+            <type>String</type>
+            <description>
+            	Mensagem caso a validacao afterEqualsThen falhe.
             </description>
         </attribute>
         <attribute>

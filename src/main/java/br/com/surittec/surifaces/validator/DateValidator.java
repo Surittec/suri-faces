@@ -38,9 +38,13 @@ public class DateValidator implements Validator {
 
 	private static final String BEFORE_THEN_ATTR = "beforeThen";
 	private static final String BEFORE_THEN_MESSAGE_ATTR = "beforeThenMessage";
+	private static final String BEFORE_EQUALS_THEN_ATTR = "beforeEqualsThen";
+	private static final String BEFORE_EQUALS_THEN_MESSAGE_ATTR = "beforeEqualsThenMessage";
 
 	private static final String AFTER_THEN_ATTR = "afterThen";
 	private static final String AFTER_THEN_MESSAGE_ATTR = "afterThenMessage";
+	private static final String AFTER_EQUALS_THEN_ATTR = "afterEqualsThen";
+	private static final String AFTER_EQUALS_THEN_MESSAGE_ATTR = "afterEqualsThenMessage";
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -49,35 +53,10 @@ public class DateValidator implements Validator {
 
 		Date date = (Date) value;
 
-		String beforeThen = (String) component.getAttributes().get(BEFORE_THEN_ATTR);
-		if (beforeThen != null && !isValid(component, date, beforeThen, true)) {
-			String message = (String) component.getAttributes().get(BEFORE_THEN_MESSAGE_ATTR);
-			if (message != null && !message.trim().equals("")) {
-				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, message));
-			}
-
-			String label = (String) component.getAttributes().get("label");
-			if (label != null && !label.trim().equals("")) {
-				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, "javax.faces.validator.Date.detail", label));
-			} else {
-				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, "javax.faces.validator.Date"));
-			}
-		}
-
-		String afterThen = (String) component.getAttributes().get(AFTER_THEN_ATTR);
-		if (afterThen != null && !isValid(component, date, afterThen, false)) {
-			String message = (String) component.getAttributes().get(AFTER_THEN_MESSAGE_ATTR);
-			if (message != null && !message.trim().equals("")) {
-				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, message));
-			}
-
-			String label = (String) component.getAttributes().get("label");
-			if (label != null && !label.trim().equals("")) {
-				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, "javax.faces.validator.Date.detail", label));
-			} else {
-				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, "javax.faces.validator.Date"));
-			}
-		}
+		validateRange(component, date, BEFORE_THEN_ATTR, BEFORE_THEN_MESSAGE_ATTR, true, false);
+		validateRange(component, date, BEFORE_EQUALS_THEN_ATTR, BEFORE_EQUALS_THEN_MESSAGE_ATTR, true, true);
+		validateRange(component, date, AFTER_THEN_ATTR, AFTER_THEN_MESSAGE_ATTR, false, false);
+		validateRange(component, date, AFTER_EQUALS_THEN_ATTR, AFTER_EQUALS_THEN_MESSAGE_ATTR, false, true);
 
 		Calendar sqlServerEarlier = Calendar.getInstance();
 		Calendar sqlServerAfter = Calendar.getInstance();
@@ -93,7 +72,24 @@ public class DateValidator implements Validator {
 		}
 	}
 
-	private boolean isValid(UIComponent component, Date value, String then, boolean before) {
+	private void validateRange(UIComponent component, Date date, String referenceAttr, String messageAttr, boolean before, boolean equals) {
+		String field = (String) component.getAttributes().get(referenceAttr);
+		if (field != null && !isValid(component, date, field, before, equals)) {
+			String message = (String) component.getAttributes().get(messageAttr);
+			if (message != null && !message.trim().equals("")) {
+				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, message));
+			}
+
+			String label = (String) component.getAttributes().get("label");
+			if (label != null && !label.trim().equals("")) {
+				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, "javax.faces.validator.Date.detail", label));
+			} else {
+				throw new ValidatorException(FacesUtils.createMessage(FacesMessage.SEVERITY_ERROR, "javax.faces.validator.Date"));
+			}
+		}
+	}
+
+	private boolean isValid(UIComponent component, Date value, String then, boolean before, boolean equals) {
 
 		Date other = null;
 
@@ -128,9 +124,9 @@ public class DateValidator implements Validator {
 			return true;
 
 		if (before)
-			return value.before(other);
+			return equals ? !value.after(other) : value.before(other);
 		else
-			return value.after(other);
+			return equals ? !value.before(other) : value.after(other);
 	}
 
 }

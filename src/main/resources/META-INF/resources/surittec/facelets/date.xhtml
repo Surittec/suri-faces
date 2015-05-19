@@ -24,6 +24,14 @@
 	<c:if test="#{not empty beforeThenMessage}">
 		<f:attribute name="beforeThenMessage" value="#{beforeThenMessage}"/>
 	</c:if>
+	
+	<c:if test="#{not empty beforeEqualsThen}">
+		<f:attribute name="beforeEqualsThen" value="#{beforeEqualsThen}"/>
+	</c:if>
+	
+	<c:if test="#{not empty beforeEqualsThenMessage}">
+		<f:attribute name="beforeEqualsThenMessage" value="#{beforeEqualsThenMessage}"/>
+	</c:if>
 
 	<c:if test="#{not empty afterThen}">
 		<f:attribute name="afterThen" value="#{afterThen}"/>
@@ -31,6 +39,14 @@
 	
 	<c:if test="#{not empty afterThenMessage}">
 		<f:attribute name="afterThenMessage" value="#{afterThenMessage}"/>
+	</c:if>
+
+	<c:if test="#{not empty afterEqualsThen}">
+		<f:attribute name="afterEqualsThen" value="#{afterEqualsThen}"/>
+	</c:if>
+	
+	<c:if test="#{not empty afterEqualsThenMessage}">
+		<f:attribute name="afterEqualsThenMessage" value="#{afterEqualsThenMessage}"/>
 	</c:if>
 	
 </ui:composition>
