@@ -14,5 +14,9 @@
 		<f:selectItem itemLabel="#{noSelectionLabel}" noSelectionOption="true"/>
 	</c:if>
 	
+	<c:if test="#{not empty enumType}">
+		<f:attribute name="enumType" value="#{enumType}"/>
+	</c:if>
+	
 </ui:composition>
 </html>

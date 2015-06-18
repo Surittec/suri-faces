@@ -200,6 +200,14 @@
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
+		<attribute>
+            <name>enumType</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+            <description>
+            	Enum class name. Default: automatic discovery; 
+            </description>
+        </attribute>
 	</tag>
 	<tag>
 		<name>object</name>

@@ -38,15 +38,13 @@ import br.com.surittec.surifaces.util.FacesUtils;
 @FacesConverter("br.com.surittec.surifaces.converter.EnumConverter")
 public class EnumConverter implements Converter {
 
-	private static final String ENUM_TYPE = EnumConverter.class.getName() + ".ENUM_TYPE";
+	private static final String ENUM_TYPE = "enumType";
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value == null)
-			return "";
-		if (!value.getClass().isEnum())
-			throwException(component);
-		component.getAttributes().put(ENUM_TYPE, value.getClass());
+		if (value == null) return "";
+		if (!value.getClass().isEnum()) throwException(component);
+		if(!component.getAttributes().containsKey(ENUM_TYPE)) component.getAttributes().put(ENUM_TYPE, value.getClass().getName());
 		return ((Enum<?>) value).name();
 	}
 
@@ -54,7 +52,7 @@ public class EnumConverter implements Converter {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		try {
-			return Enum.valueOf((Class<Enum>) component.getAttributes().get(ENUM_TYPE), value);
+			return Enum.valueOf((Class<? extends Enum>)Class.forName((String)component.getAttributes().get(ENUM_TYPE)), value);
 		} catch (Exception e) {
 			throwException(component);
 			return null;
