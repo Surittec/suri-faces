@@ -42,6 +42,8 @@ import org.ocpsoft.rewrite.faces.annotation.Deferred;
 import org.ocpsoft.rewrite.faces.annotation.IgnorePostback;
 
 import br.com.surittec.surifaces.util.FacesUtils;
+import br.com.surittec.util.exception.BusinessException;
+import br.com.surittec.util.message.Message;
 
 /**
  * 
@@ -112,7 +114,7 @@ public abstract class ControllerSupport implements Serializable {
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// PROTECTED METHODS
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+	
 	/**
 	 * Retorna a referencia do FacesContext.
 	 * 
@@ -242,6 +244,17 @@ public abstract class ControllerSupport implements Serializable {
 		FacesUtils.addMsg(FacesMessage.SEVERITY_ERROR, msg, params);
 	}
 
+	/**
+	 * Adiciona uma mensagem no facesMessages com severidade error.
+	 * 
+	 * @param Business Exception
+	 */
+	protected void addMsgErro(BusinessException be){
+		for(Message message : be.getErrors()){
+			addMsgErro(message.getMessage(), message.getMessageParams());
+		}
+	}
+	
 	/**
 	 * Adiciona uma mensagem do bundle no facesMessages com severidade error,
 	 * para o componente especificado.
