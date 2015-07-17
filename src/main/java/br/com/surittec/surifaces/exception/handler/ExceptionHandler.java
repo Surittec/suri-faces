@@ -106,7 +106,7 @@ public class ExceptionHandler extends ExceptionHandlerWrapper {
 
 					FacesUtils.addMsgErro(message);
 					FacesUtils.getRequestMap().put(ExceptionInfo.ATTRIBUTE_NAME, createExceptionInfo(t));
-					context.getApplication().getNavigationHandler().handleNavigation(context, null, null);
+					context.getApplication().getNavigationHandler().handleNavigation(context, null, getOutcome(t));
 
 					return true;
 				}
@@ -129,8 +129,8 @@ public class ExceptionHandler extends ExceptionHandlerWrapper {
 		if (errorPage == null) {
 			errorPage = errorPages.get(null);
 		}
-
-		return Navigate.to(errorPage).build();
+		
+		return errorPage != null ? Navigate.to(errorPage).build() : null;
 	}
 
 	protected ExceptionInfo createExceptionInfo(Throwable rootCause) {
