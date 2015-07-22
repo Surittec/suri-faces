@@ -10,7 +10,7 @@
 	</parent>
 	
 	<artifactId>suri-faces</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>Suri Faces</name>
@@ -120,12 +120,12 @@
 	</dependencies>
 	
 	<properties>
- 		<eap-bom.version>6.3.2</eap-bom.version>
+ 		<eap-bom.version>6.4.0</eap-bom.version>
  		
  		<primefaces.version>5.1</primefaces.version>
 		<rewrite.version>2.0.12.Final</rewrite.version>
 		
- 		<suri-util.version>1.0.4</suri-util.version>
+ 		<suri-util.version>1.0.5</suri-util.version>
 	</properties>
 
 </project>
