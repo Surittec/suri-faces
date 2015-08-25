@@ -92,4 +92,8 @@ public class FaceletsFunctions {
 		return false;
 	}
 	
+	public static java.lang.String concat(java.lang.String arg1, java.lang.String arg2) {
+		return String.format("%s%s", arg1, arg2);
+	}
+	
 }
