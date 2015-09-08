@@ -303,6 +303,16 @@ public abstract class ControllerSupport implements Serializable {
 	protected String getMessageFromBundle(String bundleName, String key, Object... params) {
 		return FacesUtils.getMessageFromBundle(bundleName, key, params);
 	}
+	
+	/**
+	 * Salva as mensagens para serem recuperadas em redirects.
+	 * Muito util para ser utilizado no metodo resquestAction
+	 * 
+	 * @return numero de mensagens
+	 */
+	protected int saveMessages(){
+		return FacesUtils.saveMessages();
+	}
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// PRIVATE METHODS

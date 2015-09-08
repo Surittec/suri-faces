@@ -21,6 +21,7 @@
 package br.com.surittec.surifaces.util;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -35,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.surittec.surifaces.listener.MultiPageMessagesListener;
 import br.com.surittec.util.message.MessageUtil;
 
 /**
@@ -311,4 +313,31 @@ public abstract class FacesUtils {
 		return MessageUtil.getMessageFromBundle(bundlesName, locale, key, params);
 	}
 
+	/**
+	 * Salva as mensagens para serem recuperadas em redirects
+	 * 
+	 * @return numero de mensagens
+	 */
+	@SuppressWarnings("unchecked")
+	public static int saveMessages() {
+		FacesContext facesContext = getContext();
+		List<FacesMessage> messages = new ArrayList<FacesMessage>();
+		for (Iterator<FacesMessage> iter = facesContext.getMessages(null); iter.hasNext();) {
+			messages.add(iter.next());
+			iter.remove();
+		}
+
+		if (messages.size() == 0) {
+			return 0;
+		}
+
+		Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();
+		List<FacesMessage> existingMessages = (List<FacesMessage>) sessionMap.get(MultiPageMessagesListener.sessionToken);
+		if (existingMessages != null) {
+			existingMessages.addAll(messages);
+		} else {
+			sessionMap.put(MultiPageMessagesListener.sessionToken, messages);
+		}
+		return messages.size();
+	}
 }

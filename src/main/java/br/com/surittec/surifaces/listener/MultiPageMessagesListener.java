@@ -20,8 +20,6 @@
  */
 package br.com.surittec.surifaces.listener;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +28,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+
+import br.com.surittec.surifaces.util.FacesUtils;
 
 /**
  * Enables messages to be rendered on different pages from which they were set.
@@ -56,7 +56,7 @@ public class MultiPageMessagesListener implements PhaseListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String sessionToken = "MULTI_PAGE_MESSAGES_SUPPORT";
+	public static final String sessionToken = "MULTI_PAGE_MESSAGES_SUPPORT";
 
 	@Override
 	public PhaseId getPhaseId() {
@@ -70,10 +70,10 @@ public class MultiPageMessagesListener implements PhaseListener {
 	 */
 	@Override
 	public void beforePhase(final PhaseEvent event) {
-		FacesContext facesContext = event.getFacesContext();
-		this.saveMessages(facesContext);
+		FacesUtils.saveMessages();
 
 		if (PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
+			FacesContext facesContext = event.getFacesContext();
 			if (!facesContext.getResponseComplete()) {
 				this.restoreMessages(facesContext);
 			}
@@ -86,33 +86,10 @@ public class MultiPageMessagesListener implements PhaseListener {
 	@Override
 	public void afterPhase(final PhaseEvent event) {
 		if (!PhaseId.RENDER_RESPONSE.equals(event.getPhaseId())) {
-			FacesContext facesContext = event.getFacesContext();
-			this.saveMessages(facesContext);
+			FacesUtils.saveMessages();
 		}
 	}
-
-	@SuppressWarnings("unchecked")
-	private int saveMessages(final FacesContext facesContext) {
-		List<FacesMessage> messages = new ArrayList<FacesMessage>();
-		for (Iterator<FacesMessage> iter = facesContext.getMessages(null); iter.hasNext();) {
-			messages.add(iter.next());
-			iter.remove();
-		}
-
-		if (messages.size() == 0) {
-			return 0;
-		}
-
-		Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();
-		List<FacesMessage> existingMessages = (List<FacesMessage>) sessionMap.get(sessionToken);
-		if (existingMessages != null) {
-			existingMessages.addAll(messages);
-		} else {
-			sessionMap.put(sessionToken, messages);
-		}
-		return messages.size();
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	private int restoreMessages(final FacesContext facesContext) {
 		Map<String, Object> sessionMap = facesContext.getExternalContext().getSessionMap();

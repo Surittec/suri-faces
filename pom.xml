@@ -10,7 +10,7 @@
 	</parent>
 	
 	<artifactId>suri-faces</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>jar</packaging>
 
 	<name>Suri Faces</name>
@@ -125,7 +125,7 @@
  		<primefaces.version>5.1</primefaces.version>
 		<rewrite.version>2.0.12.Final</rewrite.version>
 		
- 		<suri-util.version>1.0.5</suri-util.version>
+ 		<suri-util.version>1.0.8</suri-util.version>
 	</properties>
 
 </project>
