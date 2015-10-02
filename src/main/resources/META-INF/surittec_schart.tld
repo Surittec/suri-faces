@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.2</tlib-version>
+	<jsp-version>2.5</jsp-version>
+	<short-name>schart</short-name>
+	<uri>http://www.surittec.com.br/jsf/chart</uri>
+	<display-name>Surittec</display-name>
+	<description>Surittec Chart Components</description>
+	
+	<tag>
+		<name>pie</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>PieChart.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>idChart</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<type>java.util.List</type>
+			<description>data</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>polar</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>PolarAreaChart.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>Id do Canvas</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>chart</name>
+			<type>br.com.poupex.chartjs.pie.PolarAreaChart</type>
+			<description>Chart Data</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>bar</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>BarChart.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>Id do Canvas</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>chart</name>
+			<type>br.com.poupex.chartjs.pie.BarChart</type>
+			<description>Chart Data</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>line</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>LineChart.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>Id do Canvas</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>chart</name>
+			<type>br.com.poupex.chartjs.pie.LineChart</type>
+			<description>Chart Data</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>doughnut</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>DoughnutChart.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>Id do Canvas</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>chart</name>
+			<type>br.com.poupex.chartjs.pie.DoughnutChart</type>
+			<description>Chart Data</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>radar</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>RadarChart.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>Id do Canvas</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>chart</name>
+			<type>br.com.poupex.chartjs.pie.RadarChart</type>
+			<description>Chart Data</description>
+		</attribute>
+	</tag>
+</taglib>
