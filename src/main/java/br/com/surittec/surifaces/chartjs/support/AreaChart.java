@@ -41,6 +41,11 @@ public abstract class AreaChart extends ChartJS {
 	}
 
 	@Override
+	public boolean hasData() {
+		return !items.isEmpty();
+	}
+	
+	@Override
 	public String getData() {
 		return items.toString();
 	}

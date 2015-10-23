@@ -52,6 +52,8 @@ public abstract class ChartJS {
 	public abstract String getJsClass();
 
 	public abstract String getData();
+	
+	public abstract boolean hasData();
 
 	public String getConfig() {
 		if (config.isEmpty()) {

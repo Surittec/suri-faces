@@ -47,6 +47,11 @@ public abstract class DatasetChart<T extends ItemDataset> extends ChartJS {
 	}
 
 	@Override
+	public boolean hasData() {
+		return !lines.isEmpty();
+	}
+	
+	@Override
 	public String getData() {
 		StringBuilder sb = new StringBuilder();
 		sb.append('{')
