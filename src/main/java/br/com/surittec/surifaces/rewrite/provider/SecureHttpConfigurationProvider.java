@@ -23,7 +23,7 @@ package br.com.surittec.surifaces.rewrite.provider;
 import javax.servlet.ServletContext;
 
 import org.ocpsoft.rewrite.config.Configuration;
-import org.ocpsoft.rewrite.config.ConfigurationBuilder;
+import org.ocpsoft.rewrite.config.ConfigurationBuilderRoot;
 import org.ocpsoft.rewrite.config.Direction;
 import org.ocpsoft.rewrite.servlet.config.DispatchType;
 import org.ocpsoft.rewrite.servlet.config.HttpConfigurationProvider;
@@ -50,6 +50,6 @@ public abstract class SecureHttpConfigurationProvider extends HttpConfigurationP
 		return 101;
 	}
 
-	public abstract ConfigurationBuilder getConfigurationBuilder(ServletContext context);
+	public abstract ConfigurationBuilderRoot getConfigurationBuilder(ServletContext context);
 
 }
