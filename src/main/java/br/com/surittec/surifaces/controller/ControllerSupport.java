@@ -41,6 +41,7 @@ import org.ocpsoft.rewrite.annotation.RequestAction;
 import org.ocpsoft.rewrite.faces.annotation.Deferred;
 import org.ocpsoft.rewrite.faces.annotation.IgnorePostback;
 
+import br.com.surittec.surifaces.rewrite.annotation.IgnoreResponseCommitted;
 import br.com.surittec.surifaces.util.FacesUtils;
 import br.com.surittec.util.exception.BusinessException;
 import br.com.surittec.util.message.Message;
@@ -83,6 +84,7 @@ public abstract class ControllerSupport implements Serializable {
 	@RequestAction
 	@Deferred
 	@IgnorePostback
+	@IgnoreResponseCommitted
 	public String requestAction() {
 		return null;
 	}
