@@ -22,9 +22,10 @@ package br.com.surittec.surifaces.chartjs;
 
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public class RadarChart extends DatasetChart<PointDataset> {
 
 	public RadarChart(final String... labels) {

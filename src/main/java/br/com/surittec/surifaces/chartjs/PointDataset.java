@@ -24,9 +24,10 @@ import br.com.surittec.surifaces.chartjs.support.ItemDataset;
 
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public class PointDataset extends ItemDataset {
 
 	private final String fillColor;

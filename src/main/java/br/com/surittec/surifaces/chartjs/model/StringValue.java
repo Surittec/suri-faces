@@ -18,21 +18,33 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package br.com.surittec.surifaces.chartjs;
+package br.com.surittec.surifaces.chartjs.model;
 
-import br.com.surittec.surifaces.chartjs.support.AreaChart;
+import java.io.Serializable;
 
-/**
- * 
- * @deprecated Use {@link Chart}
- *
- */
-@Deprecated
-public class PolarAreaChart extends AreaChart {
+public class StringValue implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
-	@Override
-	public String getJsClass() {
-		return "PolarArea";
+	private String value;
+	
+	public StringValue() {}
+	
+	public StringValue(String value) {
+		this.value = value;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("'%s'", value);
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+	
 }

@@ -25,11 +25,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import br.com.surittec.surifaces.chartjs.Chart;
+
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public abstract class ChartJS {
 
 	protected static final String EMPTY_OBJECT = "{}";

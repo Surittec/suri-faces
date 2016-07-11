@@ -23,11 +23,14 @@ package br.com.surittec.surifaces.chartjs.support;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.surittec.surifaces.chartjs.Chart;
+
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public abstract class ItemDataset {
 
 	private final String label;

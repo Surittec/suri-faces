@@ -20,11 +20,14 @@
  */
 package br.com.surittec.surifaces.chartjs.support;
 
+import br.com.surittec.surifaces.chartjs.Chart;
+
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public class AreaItem {
 	private final int value;
 	private final String color;

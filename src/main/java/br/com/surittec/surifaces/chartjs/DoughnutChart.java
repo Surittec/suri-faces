@@ -24,9 +24,10 @@ import br.com.surittec.surifaces.chartjs.support.AreaChart;
 
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public class DoughnutChart extends AreaChart {
 
 	@Override

@@ -18,21 +18,17 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package br.com.surittec.surifaces.chartjs;
+package br.com.surittec.surifaces.chartjs.util;
 
-import br.com.surittec.surifaces.chartjs.support.AreaChart;
+public abstract class ChartUtil {
 
-/**
- * 
- * @deprecated Use {@link Chart}
- *
- */
-@Deprecated
-public class PolarAreaChart extends AreaChart {
-
-	@Override
-	public String getJsClass() {
-		return "PolarArea";
-	}
-
+	public static final String VALUE_SEPARATOR = ", ";
+	public static final String ATTRIBUTE_DEFINITION_SEPARATOR = ": ";
+	
+	public static final String OBJECT_PREFIX = "{";
+	public static final String OBJECT_SUFFIX = "}";
+	
+	public static final String ARRAY_PREFIX = "[";
+	public static final String ARRAY_SUFFIX = "]";
+	
 }

@@ -23,11 +23,14 @@ package br.com.surittec.surifaces.chartjs.support;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.surittec.surifaces.chartjs.Chart;
+
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public abstract class AreaChart extends ChartJS {
 
 	private final List<AreaItem> items = new ArrayList<>();

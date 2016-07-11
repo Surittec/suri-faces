@@ -22,9 +22,10 @@ package br.com.surittec.surifaces.chartjs;
 
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public class LineChart extends DatasetChart<PointDataset> {
 
 	public LineChart(final String... labels) {

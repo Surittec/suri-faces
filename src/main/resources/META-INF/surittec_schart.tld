@@ -13,7 +13,7 @@
 		<name>pie</name>
 		<tag-class />
 		<body-content>empty</body-content>
-		<description>PieChart.</description>
+		<description>PieChart. DEPRECATED: USE CHARTJS</description>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -45,7 +45,7 @@
 		<name>polar</name>
 		<tag-class />
 		<body-content>empty</body-content>
-		<description>PolarAreaChart.</description>
+		<description>PolarAreaChart. DEPRECATED: USE CHARTJS</description>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -68,7 +68,7 @@
 		</attribute>
 		<attribute>
 			<name>chart</name>
-			<type>br.com.poupex.chartjs.pie.PolarAreaChart</type>
+			<type>br.com.surittec.surifaces.chartjs.PolarAreaChart</type>
 			<description>Chart Data</description>
 		</attribute>
 	</tag>
@@ -77,7 +77,7 @@
 		<name>bar</name>
 		<tag-class />
 		<body-content>empty</body-content>
-		<description>BarChart.</description>
+		<description>BarChart. DEPRECATED: USE CHARTJS</description>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -100,7 +100,7 @@
 		</attribute>
 		<attribute>
 			<name>chart</name>
-			<type>br.com.poupex.chartjs.pie.BarChart</type>
+			<type>br.com.surittec.surifaces.chartjs.BarChart</type>
 			<description>Chart Data</description>
 		</attribute>
 	</tag>
@@ -109,7 +109,7 @@
 		<name>line</name>
 		<tag-class />
 		<body-content>empty</body-content>
-		<description>LineChart.</description>
+		<description>LineChart. DEPRECATED: USE CHARTJS</description>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -132,7 +132,7 @@
 		</attribute>
 		<attribute>
 			<name>chart</name>
-			<type>br.com.poupex.chartjs.pie.LineChart</type>
+			<type>br.com.surittec.surifaces.chartjs.LineChart</type>
 			<description>Chart Data</description>
 		</attribute>
 	</tag>
@@ -141,7 +141,7 @@
 		<name>doughnut</name>
 		<tag-class />
 		<body-content>empty</body-content>
-		<description>DoughnutChart.</description>
+		<description>DoughnutChart. DEPRECATED: USE CHARTJS</description>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -164,7 +164,7 @@
 		</attribute>
 		<attribute>
 			<name>chart</name>
-			<type>br.com.poupex.chartjs.pie.DoughnutChart</type>
+			<type>br.com.surittec.surifaces.chartjs.DoughnutChart</type>
 			<description>Chart Data</description>
 		</attribute>
 	</tag>
@@ -173,7 +173,7 @@
 		<name>radar</name>
 		<tag-class />
 		<body-content>empty</body-content>
-		<description>RadarChart.</description>
+		<description>RadarChart. DEPRECATED: USE CHARTJS</description>
 		<attribute>
 			<name>id</name>
 			<type>java.lang.String</type>
@@ -196,8 +196,40 @@
 		</attribute>
 		<attribute>
 			<name>chart</name>
-			<type>br.com.poupex.chartjs.pie.RadarChart</type>
+			<type>br.com.surittec.surifaces.chartjs.RadarChart</type>
 			<description>Chart Data</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>chartjs</name>
+		<tag-class />
+		<body-content>empty</body-content>
+		<description>ChartJS.</description>
+		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+			<description>Id</description>
+		</attribute>
+		<attribute>
+			<name>legendId</name>
+			<type>java.lang.String</type>
+			<description>idLegend div</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<type>java.lang.String</type>
+			<description>width</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<type>java.lang.String</type>
+			<description>height</description>
+		</attribute>
+		<attribute>
+			<name>chart</name>
+			<type>br.com.surittec.surifaces.chartjs.Chart</type>
+			<description>Chart</description>
 		</attribute>
 	</tag>
 </taglib>

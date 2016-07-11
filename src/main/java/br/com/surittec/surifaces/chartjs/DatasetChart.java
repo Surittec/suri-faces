@@ -29,9 +29,10 @@ import br.com.surittec.surifaces.chartjs.support.ItemDataset;
 
 /**
  * 
- * @author Luis Gustavo
+ * @deprecated Use {@link Chart}
  *
  */
+@Deprecated
 public abstract class DatasetChart<T extends ItemDataset> extends ChartJS {
 
 	private final String[] labels;

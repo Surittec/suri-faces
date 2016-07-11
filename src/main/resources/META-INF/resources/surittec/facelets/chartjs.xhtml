@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:sf="http://www.surittec.com.br/jsf/fn">
+<ui:composition>
+	
+	<h:outputScript library="surittec" name="jquery/Chart.min.js" target="body"/>
+	
+	<canvas id="#{id}" width="#{width}" height="#{height}"></canvas>
+	<script type="text/javascript">
+		$(function() {
+			var chart_#{id}= new Chart(document.getElementById("#{id}").getContext("2d"), #{chart});
+			if(#{not empty legendId}){
+				var legend_#{id} = document.getElementById("#{legendId}");
+				if(legend_#{id} !== null){
+					legend_#{id}.innerHTML = chart_#{id}.generateLegend();
+				}
+			}
+	    });
+	</script>
+	
+</ui:composition>
+</html>
