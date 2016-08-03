@@ -22,25 +22,26 @@ package br.com.surittec.surifaces.chartjs.model;
 
 import java.util.Collection;
 
-import br.com.surittec.surifaces.chartjs.util.ChartUtil;
+public class Axes extends ArrayValue<ObjectValue> {
 
-public class StringArrayValue extends ArrayValue<String>{
-	
 	private static final long serialVersionUID = 1L;
 
+	public static final String STACKED 	=  "stacked";
+	public static final String TICKS 	=  "ticks";
+	
 	/*
 	 * Constructors
 	 */
 	
-	public StringArrayValue() {
-		super();
+	public Axes() {
+		super(new ObjectValue());
 	}
 	
-	public StringArrayValue(String ... values){
+	public Axes(ObjectValue ... values) {
 		super(values);
 	}
 	
-	public StringArrayValue(Collection<String> values) {
+	public Axes(Collection<ObjectValue> values) {
 		super(values);
 	}
 	
@@ -48,18 +49,22 @@ public class StringArrayValue extends ArrayValue<String>{
 	 * Public Methods
 	 */
 	
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(ChartUtil.ARRAY_PREFIX);
-		boolean appendSeparator = false;
-		for(String value : getValues()){
-			if(appendSeparator) sb.append(ChartUtil.VALUE_SEPARATOR);
-			sb.append("'").append(value).append("'");
-			appendSeparator = true;
-		}
-		sb.append(ChartUtil.ARRAY_SUFFIX);
-		return sb.toString();
+	public void setStacked(boolean stacked){
+		getObject().with(STACKED, stacked);
 	}
-
+	
+	public Ticks getTicks(){
+		Ticks ticks = (Ticks) getObject().getAttribute(TICKS);
+		if(ticks == null) ticks = getObject().add(TICKS, new Ticks());
+		return ticks;
+	}
+	
+	public ObjectValue getObject(){
+		if(getValues().isEmpty()){
+			ObjectValue object = new ObjectValue();
+			getValues().add(object);
+			return object;
+		}
+		return ((ObjectValue)getValues().iterator().next());
+	}
 }

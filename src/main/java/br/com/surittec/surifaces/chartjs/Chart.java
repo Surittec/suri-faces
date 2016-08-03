@@ -20,7 +20,9 @@
  */
 package br.com.surittec.surifaces.chartjs;
 
+import br.com.surittec.surifaces.chartjs.model.Data;
 import br.com.surittec.surifaces.chartjs.model.ObjectValue;
+import br.com.surittec.surifaces.chartjs.model.Options;
 import br.com.surittec.surifaces.chartjs.model.StringValue;
 
 public class Chart extends ObjectValue {
@@ -38,6 +40,7 @@ public class Chart extends ObjectValue {
 	public static final String POLAR_AREA 		= "polarArea";
 	public static final String PIE 				= "pie";
 	public static final String DOUGHNUT 		= "doughnut";
+	public static final String BUBBLE 			= "bubble";
 	
 	/*
 	 * Constructor
@@ -45,24 +48,29 @@ public class Chart extends ObjectValue {
 	
 	public Chart(String type){
 		with(TYPE_ATTRIBUTE, new StringValue(type));
-		with(DATA_ATTRIBUTE, new ObjectValue());
-		with(OPTIONS_ATTRIBUTE, new ObjectValue());
+		with(DATA_ATTRIBUTE, new Data());
+		with(OPTIONS_ATTRIBUTE, new Options());
 	}
 
 	/*
 	 * Public Methods
 	 */
 	
+	@Override
+	public Chart with(String name, Object value){
+		return (Chart) super.with(name, value);
+	}
+	
 	public StringValue getType(){
 		return (StringValue) getAttribute(TYPE_ATTRIBUTE);
 	}
 	
-	public ObjectValue getData(){
-		return (ObjectValue) getAttribute(DATA_ATTRIBUTE);
+	public Data getData(){
+		return (Data) getAttribute(DATA_ATTRIBUTE);
 	}
 	
-	public ObjectValue getOptions(){
-		return (ObjectValue) getAttribute(OPTIONS_ATTRIBUTE);
+	public Options getOptions(){
+		return (Options) getAttribute(OPTIONS_ATTRIBUTE);
 	}
 	
 }

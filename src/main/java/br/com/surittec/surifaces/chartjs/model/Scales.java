@@ -20,28 +20,25 @@
  */
 package br.com.surittec.surifaces.chartjs.model;
 
-import java.util.Collection;
+import java.util.Map;
 
-import br.com.surittec.surifaces.chartjs.util.ChartUtil;
+public class Scales extends ObjectValue{
 
-public class StringArrayValue extends ArrayValue<String>{
-	
 	private static final long serialVersionUID = 1L;
-
+	
+	public static final String XAXES 	=  "xAxes";
+	public static final String YAXES 	=  "yAxes";
+	
 	/*
 	 * Constructors
 	 */
 	
-	public StringArrayValue() {
+	public Scales() {
 		super();
 	}
 	
-	public StringArrayValue(String ... values){
-		super(values);
-	}
-	
-	public StringArrayValue(Collection<String> values) {
-		super(values);
+	public Scales(Map<String, Object> attributes) {
+		super(attributes);
 	}
 	
 	/*
@@ -49,17 +46,25 @@ public class StringArrayValue extends ArrayValue<String>{
 	 */
 	
 	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(ChartUtil.ARRAY_PREFIX);
-		boolean appendSeparator = false;
-		for(String value : getValues()){
-			if(appendSeparator) sb.append(ChartUtil.VALUE_SEPARATOR);
-			sb.append("'").append(value).append("'");
-			appendSeparator = true;
-		}
-		sb.append(ChartUtil.ARRAY_SUFFIX);
-		return sb.toString();
+	public Scales with(String name, Object value){
+		return (Scales) super.with(name, value);
 	}
-
+	
+	public Axes getXAxes(){
+		return getScalesAxes(XAXES);
+	}
+	
+	public Axes getYAxes(){
+		return getScalesAxes(YAXES);
+	}
+	
+	/*
+	 * Protected Methods
+	 */
+	
+	protected Axes getScalesAxes(String axesName){
+		Axes axes = (Axes) getAttribute(axesName);
+		if(axes == null) axes = add(axesName, new Axes());
+		return axes;
+	}
 }

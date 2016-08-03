@@ -22,44 +22,24 @@ package br.com.surittec.surifaces.chartjs.model;
 
 import java.util.Collection;
 
-import br.com.surittec.surifaces.chartjs.util.ChartUtil;
+public class DatasetArrayValue extends ArrayValue<Dataset> {
 
-public class StringArrayValue extends ArrayValue<String>{
-	
 	private static final long serialVersionUID = 1L;
 
 	/*
 	 * Constructors
 	 */
 	
-	public StringArrayValue() {
+	public DatasetArrayValue() {
 		super();
 	}
 	
-	public StringArrayValue(String ... values){
+	public DatasetArrayValue(Dataset ... values) {
 		super(values);
 	}
 	
-	public StringArrayValue(Collection<String> values) {
+	public DatasetArrayValue(Collection<Dataset> values) {
 		super(values);
 	}
 	
-	/*
-	 * Public Methods
-	 */
-	
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(ChartUtil.ARRAY_PREFIX);
-		boolean appendSeparator = false;
-		for(String value : getValues()){
-			if(appendSeparator) sb.append(ChartUtil.VALUE_SEPARATOR);
-			sb.append("'").append(value).append("'");
-			appendSeparator = true;
-		}
-		sb.append(ChartUtil.ARRAY_SUFFIX);
-		return sb.toString();
-	}
-
 }

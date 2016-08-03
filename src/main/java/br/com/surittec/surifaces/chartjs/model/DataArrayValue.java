@@ -21,9 +21,14 @@
 package br.com.surittec.surifaces.chartjs.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
+import br.com.surittec.surifaces.chartjs.Chart;
 import br.com.surittec.surifaces.chartjs.util.ChartUtil;
 
 public class DataArrayValue implements Serializable{
@@ -31,19 +36,21 @@ public class DataArrayValue implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private StringArrayValue labels;
+	private Map<String, Integer> mapLabelValueIndex;
 	
-	private Map<String, Object> values;
+	private List<Object> values;
+	
+	private boolean nullValuesAsZero;
 	
 	/*
 	 * Constructors
 	 */
 	
-	public DataArrayValue(StringArrayValue labels) {
-		this(labels, new HashMap<String, Object>());
+	public DataArrayValue() {
+		this(new ArrayList<>());
 	}
 	
-	public DataArrayValue(StringArrayValue labels, Map<String, Object> values) {
-		this.labels = labels;
+	public DataArrayValue(List<Object> values){
 		this.values = values;
 	}
 	
@@ -55,52 +62,74 @@ public class DataArrayValue implements Serializable{
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(ChartUtil.ARRAY_PREFIX);
-		
-		boolean appendSeparator = false;
-		for(String label : labels.getValues()){
-			if(appendSeparator) sb.append(ChartUtil.VALUE_SEPARATOR);
-			appendValue(sb, label);
-			appendSeparator = true;
+
+		if(labels != null){
+			boolean appendSeparator = false;
+			for(String label : labels.getValues()){
+				if(appendSeparator) sb.append(ChartUtil.VALUE_SEPARATOR);
+				
+				Integer index = mapLabelValueIndex.get(label);
+				if(index != null){
+					sb.append(values.get(index));
+				}else{
+					sb.append(nullValuesAsZero ? "0" : "null");
+				}
+				appendSeparator = true;
+			}
+		}
+		else{
+			sb.append(StringUtils.join(values, ChartUtil.VALUE_SEPARATOR));
 		}
 		
 		sb.append(ChartUtil.ARRAY_SUFFIX);
 		
 		return sb.toString();
 	}
-
-	protected void appendValue(StringBuilder sb, String label){
-		Object value = values.get(label);
-		if(value != null){
-			sb.append(value);
-		}else{
-			sb.append("0");
-		}
-	}
 	
 	/*
 	 * Public Methods
 	 */
 	
-	public DataArrayValue with(String label, Object value){
-		values.put(label, value);
+	public DataArrayValue with(Object value){
+		values.add(value);
 		return this;
 	}
 	
-	public <T> T add(String label, T value){
-		values.put(label, value);
+	public Object add(Object value){
+		values.add(value);
+		return value;
+	}
+	
+	public DataArrayValue with(Chart chart, String label, Object value){
+		if(labels == null) labels = chart.getData().getLabels();
+		if(mapLabelValueIndex == null) mapLabelValueIndex = new HashMap<String, Integer>();
+		int index = values.size();
+
+		labels.with(label);
+		values.add(value);
+		mapLabelValueIndex.put(label, index);
+		return this;
+	}
+	
+	public <T> T add(Chart chart, String label, T value){
+		with(chart, label, value);
 		return value;
 	}
 
-	public Map<String, Object> getValues() {
+	public List<Object> getValues() {
 		return values;
 	}
 
-	public void setValues(Map<String, Object> values) {
+	public void setValues(List<Object> values) {
 		this.values = values;
 	}
 
-	public StringArrayValue getLabels() {
-		return labels;
+	public boolean isNullValuesAsZero() {
+		return nullValuesAsZero;
+	}
+
+	public void setNullValuesAsZero(boolean nullValuesAsZero) {
+		this.nullValuesAsZero = nullValuesAsZero;
 	}
 
 }

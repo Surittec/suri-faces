@@ -9,7 +9,10 @@
 		xmlns:sf="http://www.surittec.com.br/jsf/fn">
 <ui:composition>
 	
-	<h:outputScript library="surittec" name="jquery/Chart.min.js" target="body"/>
+	<h:outputScript library="surittec" name="jquery/Chart.min.js"/>
+	<h:outputScript library="surittec" name="jquery/Chart.pointLabel.plugin.js"/>
+	
+	<ui:insert/>
 	
 	<canvas id="#{id}" width="#{width}" height="#{height}"></canvas>
 	<script type="text/javascript">

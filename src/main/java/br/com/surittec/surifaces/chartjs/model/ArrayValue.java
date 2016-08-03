@@ -29,25 +29,26 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.surittec.surifaces.chartjs.util.ChartUtil;
 
-public class ArrayValue implements Serializable{
+public class ArrayValue<T> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	private Collection<Object> values;
+	private Collection<T> values;
 	
 	/*
 	 * Constructors
 	 */
 	
 	public ArrayValue() {
-		this.values = new ArrayList<>();
+		this(new ArrayList<T>());
 	}
 	
-	public ArrayValue(Object ... values) {
-		this.values = Arrays.asList(values);
+	@SafeVarargs
+	public ArrayValue(T ... values){
+		this(new ArrayList<T>(Arrays.asList(values)));
 	}
 	
-	public ArrayValue(Collection<Object> values) {
+	public ArrayValue(Collection<T> values) {
 		this.values = values;
 	}
 	
@@ -60,21 +61,21 @@ public class ArrayValue implements Serializable{
 		return String.format("%s%s%s", ChartUtil.ARRAY_PREFIX, StringUtils.join(values, ChartUtil.VALUE_SEPARATOR), ChartUtil.ARRAY_SUFFIX);
 	}
 
-	public ArrayValue with(Object value){
+	public ArrayValue<T> with(T value){
 		values.add(value);
 		return this;
 	}
 	
-	public <T> T add(T value){
+	public T add(T value){
 		values.add(value);
 		return value;
 	}
 	
-	public Collection<Object> getValues() {
+	public Collection<T> getValues() {
 		return values;
 	}
 
-	public void setValues(Collection<Object> values) {
+	public void setValues(Collection<T> values) {
 		this.values = values;
 	}
 

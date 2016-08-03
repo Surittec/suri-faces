@@ -20,28 +20,26 @@
  */
 package br.com.surittec.surifaces.chartjs.model;
 
-import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Map;
 
-import br.com.surittec.surifaces.chartjs.util.ChartUtil;
-
-public class StringArrayValue extends ArrayValue<String>{
+public class Data extends ObjectValue{
 	
 	private static final long serialVersionUID = 1L;
 
+	private static final String LABELS 		= "labels";
+	private static final String DATASETS 	= "datasets";
+	
 	/*
 	 * Constructors
 	 */
-	
-	public StringArrayValue() {
+
+	public Data() {
 		super();
 	}
 	
-	public StringArrayValue(String ... values){
-		super(values);
-	}
-	
-	public StringArrayValue(Collection<String> values) {
-		super(values);
+	public Data(Map<String, Object> attributes) {
+		super(attributes);
 	}
 	
 	/*
@@ -49,17 +47,20 @@ public class StringArrayValue extends ArrayValue<String>{
 	 */
 	
 	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(ChartUtil.ARRAY_PREFIX);
-		boolean appendSeparator = false;
-		for(String value : getValues()){
-			if(appendSeparator) sb.append(ChartUtil.VALUE_SEPARATOR);
-			sb.append("'").append(value).append("'");
-			appendSeparator = true;
-		}
-		sb.append(ChartUtil.ARRAY_SUFFIX);
-		return sb.toString();
+	public Data with(String name, Object value){
+		return (Data) super.with(name, value);
+	}
+	
+	public StringArrayValue getLabels() {
+		StringArrayValue labels = (StringArrayValue) getAttribute(LABELS);
+		if(labels == null) labels = add(LABELS, new StringArrayValue(new LinkedHashSet<String>()));
+		return labels;
+	}
+
+	public DatasetArrayValue getDatasets() {
+		DatasetArrayValue datasets = (DatasetArrayValue) getAttribute(DATASETS);
+		if(datasets == null) datasets = add(DATASETS, new DatasetArrayValue());
+		return datasets;
 	}
 
 }
