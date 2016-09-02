@@ -30,12 +30,14 @@ import org.primefaces.component.api.UIData;
 public class PageLinkRenderer extends org.primefaces.component.paginator.PageLinkRenderer{
 
 	@Override
-	public void render(FacesContext context, UIData uidata, String linkClass, String iconClass, boolean disabled) throws IOException {
+	public void render(FacesContext context, UIData uidata, String linkClass, String iconClass, boolean disabled, String ariaLabel) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
         String styleClass = disabled ? linkClass + " ui-state-disabled" : linkClass;
 
-        writer.startElement("span", null);
+        writer.startElement("a", null);
+        writer.writeAttribute("href", "#", null);
         writer.writeAttribute("class", styleClass, null);
+        writer.writeAttribute("aria-label", ariaLabel, null);
         if(!disabled) {
             writer.writeAttribute("tabindex", 0, null);
         }
@@ -48,7 +50,7 @@ public class PageLinkRenderer extends org.primefaces.component.paginator.PageLin
         
         writer.endElement("span");
         
-        writer.endElement("span");
+        writer.endElement("a");
     }    
 	
 }

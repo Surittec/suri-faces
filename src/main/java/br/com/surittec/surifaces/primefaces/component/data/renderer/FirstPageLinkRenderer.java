@@ -32,7 +32,7 @@ public class FirstPageLinkRenderer extends PageLinkRenderer implements Paginator
     public void render(FacesContext context, UIData uidata) throws IOException {
         boolean disabled = uidata.getPage() == 0;
        
-        super.render(context, uidata, UIData.PAGINATOR_FIRST_PAGE_LINK_CLASS, UIData.PAGINATOR_FIRST_PAGE_ICON_CLASS, disabled);
+        super.render(context, uidata, UIData.PAGINATOR_FIRST_PAGE_LINK_CLASS, UIData.PAGINATOR_FIRST_PAGE_ICON_CLASS, disabled, null);
     }
 
 }

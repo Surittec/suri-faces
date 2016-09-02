@@ -105,6 +105,15 @@ Chart.Scale.prototype.convertTicksToLabels = function() {
 		me);
 };
 
+Chart.Scale.prototype.beforeFit = function() {
+	var me = this;
+	var pointLabelOptions = me.chart.options.pointLabel;
+	if(!me.isHorizontal() && pointLabelOptions.display){
+		me.maxHeight = me.maxHeight - pointLabelOptions.fontSize - 2;
+	}
+	Chart.helpers.callCallback(me.options.beforeFit, [me]);
+};
+
 Chart.scaleService.updateScaleDefaults('linear', {
     ticks: {
 		callback: function(tickValue, index, ticks, chartInstance) {

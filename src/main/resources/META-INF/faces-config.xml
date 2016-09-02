@@ -36,11 +36,6 @@
 		<component-type>org.primefaces.component.InputMask</component-type>
 		<component-class>br.com.surittec.surifaces.primefaces.component.input.InputMask</component-class>
 	</component>
-	
-	<component>
-		<component-type>org.primefaces.component.Captcha</component-type>
-		<component-class>br.com.surittec.surifaces.primefaces.component.captcha.Captcha</component-class>
-	</component>
 
 	<!-- RENDERES -->
 
@@ -55,12 +50,6 @@
 			<renderer-type>org.primefaces.component.SelectOneMenuRenderer</renderer-type>
 			<renderer-class>br.com.surittec.surifaces.primefaces.component.select.SelectOneMenuRenderer</renderer-class>
 		</renderer>
-		<renderer>
-			<component-family>org.primefaces.component</component-family>
-			<renderer-type>org.primefaces.component.CaptchaRenderer</renderer-type>
-			<renderer-class>br.com.surittec.surifaces.primefaces.component.captcha.CaptchaRenderer</renderer-class>
-		</renderer>
 	</render-kit>
-
 
 </faces-config>

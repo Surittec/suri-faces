@@ -35,7 +35,7 @@ public class LastPageLinkRenderer extends PageLinkRenderer implements PaginatorE
         
         boolean disabled = (currentPage == (pageCount - 1)) || (currentPage == 0 && pageCount == 0);
        
-        super.render(context, uidata, UIData.PAGINATOR_LAST_PAGE_LINK_CLASS, UIData.PAGINATOR_LAST_PAGE_ICON_CLASS, disabled);
+        super.render(context, uidata, UIData.PAGINATOR_LAST_PAGE_LINK_CLASS, UIData.PAGINATOR_LAST_PAGE_ICON_CLASS, disabled, null);
     }   
 
 }
