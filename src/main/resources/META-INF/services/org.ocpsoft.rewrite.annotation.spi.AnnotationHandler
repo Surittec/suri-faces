@@ -1,4 +1,2 @@
 br.com.surittec.surifaces.rewrite.handler.RolesRequiredHandler
-br.com.surittec.surifaces.rewrite.handler.AllRolesRequiredHandler
-br.com.surittec.surifaces.rewrite.handler.AnyRolesRequiredHandler
 br.com.surittec.surifaces.rewrite.handler.IgnoreResponseCommittedHandler

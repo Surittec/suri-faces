@@ -27,14 +27,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Use {@link AnyRolesRequired} or {@link AllRolesRequired} instead
- * 
- */
+import br.com.surittec.surifaces.rewrite.enumaration.MatchMode;
 
 @Inherited
 @Documented
-@Deprecated
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RolesRequired {
@@ -43,6 +39,11 @@ public @interface RolesRequired {
 	 * The roles required for the rule to match.
 	 */
 	String[] value();
+
+	/**
+	 * Roles match mode
+	 */
+	MatchMode match() default MatchMode.ALL;
 
 	/**
 	 * Security rule priority. Default 99 - before annotations priority
