@@ -27,17 +27,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Use {@link AnyRolesRequired} or {@link AllRolesRequired} instead
- * 
- */
-
 @Inherited
 @Documented
-@Deprecated
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RolesRequired {
+public @interface AnyRolesRequired {
 
 	/**
 	 * The roles required for the rule to match.

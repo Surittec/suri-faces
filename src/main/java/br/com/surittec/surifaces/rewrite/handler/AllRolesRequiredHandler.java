@@ -30,7 +30,7 @@ import org.ocpsoft.rewrite.servlet.config.SendStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.surittec.surifaces.rewrite.annotation.RolesRequired;
+import br.com.surittec.surifaces.rewrite.annotation.AllRolesRequired;
 import br.com.surittec.surifaces.rewrite.condition.JAASAndRoles;
 
 /**
@@ -39,13 +39,13 @@ import br.com.surittec.surifaces.rewrite.condition.JAASAndRoles;
  * @author Lucas Lins
  *
  */
-public class RolesRequiredHandler implements AnnotationHandler<RolesRequired> {
+public class AllRolesRequiredHandler implements AnnotationHandler<AllRolesRequired> {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
-	public Class<RolesRequired> handles() {
-		return RolesRequired.class;
+	public Class<AllRolesRequired> handles() {
+		return AllRolesRequired.class;
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class RolesRequiredHandler implements AnnotationHandler<RolesRequired> {
 	}
 
 	@Override
-	public void process(ClassContext context, RolesRequired annotation, HandlerChain chain) {
+	public void process(ClassContext context, AllRolesRequired annotation, HandlerChain chain) {
 
 		Join join = context.getJavaClass().getAnnotation(Join.class);
 

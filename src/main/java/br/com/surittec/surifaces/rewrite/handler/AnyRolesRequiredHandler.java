@@ -30,8 +30,8 @@ import org.ocpsoft.rewrite.servlet.config.SendStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.surittec.surifaces.rewrite.annotation.RolesRequired;
-import br.com.surittec.surifaces.rewrite.condition.JAASAndRoles;
+import br.com.surittec.surifaces.rewrite.annotation.AnyRolesRequired;
+import br.com.surittec.surifaces.rewrite.condition.JAASOrRoles;
 
 /**
  * Handler para insersao de regra de seguranca
@@ -39,13 +39,13 @@ import br.com.surittec.surifaces.rewrite.condition.JAASAndRoles;
  * @author Lucas Lins
  *
  */
-public class RolesRequiredHandler implements AnnotationHandler<RolesRequired> {
+public class AnyRolesRequiredHandler implements AnnotationHandler<AnyRolesRequired> {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
-	public Class<RolesRequired> handles() {
-		return RolesRequired.class;
+	public Class<AnyRolesRequired> handles() {
+		return AnyRolesRequired.class;
 	}
 
 	/**
@@ -57,14 +57,14 @@ public class RolesRequiredHandler implements AnnotationHandler<RolesRequired> {
 	}
 
 	@Override
-	public void process(ClassContext context, RolesRequired annotation, HandlerChain chain) {
+	public void process(ClassContext context, AnyRolesRequired annotation, HandlerChain chain) {
 
 		Join join = context.getJavaClass().getAnnotation(Join.class);
 
 		if (join != null) {
 			context.setBaseRule(org.ocpsoft.rewrite.servlet.config.rule.Join.path(join.path()).to(join.to()).withChaining());
 			context.getRuleBuilder().withPriority(annotation.priority());
-			context.getRuleBuilder().when(JAASAndRoles.hasntSomeRole(annotation.value()));
+			context.getRuleBuilder().when(JAASOrRoles.hasntAnyRoles(annotation.value()));
 			context.getRuleBuilder().perform(SendStatus.error(403));
 		} else {
 			logger.warn(String.format("SECURITY VULNERABILITY: The class %s must have org.ocpsoft.rewrite.annotation.Join annotation"));
