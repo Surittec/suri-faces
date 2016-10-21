@@ -27,6 +27,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import br.com.surittec.surifaces.rewrite.enumaration.MatchMode;
+
 @Inherited
 @Documented
 @Target(ElementType.TYPE)
@@ -37,6 +39,11 @@ public @interface RolesRequired {
 	 * The roles required for the rule to match.
 	 */
 	String[] value();
+
+	/**
+	 * Roles match mode
+	 */
+	MatchMode match() default MatchMode.ALL;
 
 	/**
 	 * Security rule priority. Default 99 - before annotations priority
