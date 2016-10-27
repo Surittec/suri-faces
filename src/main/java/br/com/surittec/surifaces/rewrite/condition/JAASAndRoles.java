@@ -28,25 +28,24 @@ import org.ocpsoft.rewrite.servlet.config.HttpCondition;
 import org.ocpsoft.rewrite.servlet.http.event.HttpServletRewrite;
 
 /**
- * Condicao para validacao se o usuario nao possui as regras informadas
+ * Condicao para validacao se o usuario nao possui todas as regras informadas
  * 
  * @author Lucas Lins
  *
  */
-public class JAASRoles extends HttpCondition {
+public class JAASAndRoles extends HttpCondition {
 
 	private final Collection<String> roles;
 
 	/**
-	 * Create a new {@link JAASRoles} condition specifying the roles of which
-	 * the current user must be a member for evaluation to return
-	 * <code>true</code>.
+	 * Create a new {@link JAASAndRoles} condition specifying the roles of which the current user
+	 * must be a member for evaluation to return <code>true</code>.
 	 */
-	public static JAASRoles hasntRoles(String... roles) {
-		return new JAASRoles(roles);
+	public static JAASAndRoles hasntSomeRole(String... roles) {
+		return new JAASAndRoles(roles);
 	}
 
-	private JAASRoles(String[] roles) {
+	private JAASAndRoles(String[] roles) {
 		this.roles = Arrays.asList(roles);
 	}
 
