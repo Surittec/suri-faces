@@ -36,6 +36,11 @@
 		<component-type>org.primefaces.component.InputMask</component-type>
 		<component-class>br.com.surittec.surifaces.primefaces.component.input.InputMask</component-class>
 	</component>
+	
+	<component>
+		<component-type>org.primefaces.component.AutoComplete</component-type>
+		<component-class>br.com.surittec.surifaces.primefaces.component.autocomplete.AutoComplete</component-class>
+	</component>
 
 	<!-- RENDERES -->
 
