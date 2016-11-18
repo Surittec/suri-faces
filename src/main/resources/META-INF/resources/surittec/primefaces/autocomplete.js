@@ -14,7 +14,7 @@ PrimeFaces.widget.AutoComplete = PrimeFaces.widget.AutoComplete.extend ( {
 	            switch(e.which) {
                     case keyCode.TAB:
                     	if($this.input.val().length){
-                        	$this.invokeItemSelectBehavior(event, $this.input.val());
+                        	$this.invokeItemSelectBehavior(e, $this.input.val());
                             e.preventDefault();
                         }
                     break;
@@ -22,7 +22,7 @@ PrimeFaces.widget.AutoComplete = PrimeFaces.widget.AutoComplete.extend ( {
                     case keyCode.ENTER:
                     case keyCode.NUMPAD_ENTER:
                         if($this.input.val().length){
-                        	$this.invokeItemSelectBehavior(event, $this.input.val());
+                        	$this.invokeItemSelectBehavior(e, $this.input.val());
                         }
                         e.preventDefault();                        
                     break;
