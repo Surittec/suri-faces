@@ -48,8 +48,12 @@ public class SimpleObjectConverter implements Converter {
 		Map<Integer, Object> objectValues = (Map<Integer, Object>) component.getAttributes().get(OBJECT_VALUES);
 		if (objectValues == null)
 			return null;
-
-		return objectValues.get(Integer.valueOf(value));
+		
+		try{
+			return objectValues.get(Integer.valueOf(value));
+		}catch(NumberFormatException e){
+			return null;
+		}
 	}
 
 	@Override
